@@ -1,0 +1,26 @@
+#include <vector>
+
+using namespace std;
+
+class AddMultiply {
+public:
+    vector<int> makeExpression(int y) {
+        vector<int> result;
+        for (int a = -1000; a < 1001; ++a) {
+        	if (a == 0 || a == 1) continue;
+            for (int b = -1000; b < 1001; ++b) {
+            	if (b == 0 || b == 1) continue;
+                for (int c = -1000; c < 1001; ++c) {
+                	if (c == 0 || c == 1) continue;
+                    if (y == (a * b + c)) {
+                    	result.push_back(a);
+                        result.push_back(b);
+                        result.push_back(c);
+                        return result;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+};

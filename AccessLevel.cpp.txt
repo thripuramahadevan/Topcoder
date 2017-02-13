@@ -1,0 +1,21 @@
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class AccessLevel {
+public:
+    string canAccess(vector<int> rights, int minPermission) {
+    	string result;
+        if (rights.size() == 0) return "";
+        for (auto right : rights) {
+            if (right >= minPermission) {
+            	result = result + 'A';
+            }
+            else {
+            	result = result + 'D';
+            }
+        }
+        return result;
+    }
+};

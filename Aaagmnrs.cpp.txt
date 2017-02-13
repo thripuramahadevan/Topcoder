@@ -1,0 +1,53 @@
+#include <vector>
+#include <string>
+#include <map>
+
+using namespace std;
+
+class Aaagmnrs {
+    public:
+    vector<string> anagrams(vector<string> phrases);
+    bool isAnagram(string str, vector<string> res);
+};
+bool Aaagmnrs::isAnagram(string str, vector<string> res){
+    	bool result = false;
+        map<char, int> checkMap;
+        for (auto anagStr : res) {
+        	checkMap.clear();
+            for (int i = 0; i < str.size();++i) {
+                if (str[i] == ' ') continue;
+            	checkMap[tolower(str[i])]++;
+            }
+            for (int i = 0; i < anagStr.size();++i) {
+            	if (anagStr[i] == ' ') continue;
+                checkMap[tolower(anagStr[i])]--;
+            }
+            for (auto freq : checkMap) {
+            	if (freq.second > 0) {
+                	result = false;
+                    break;
+                }
+                else {
+                	result = true;
+                }
+            }
+            if (result == false) {
+                continue;
+            }
+            else
+                return true;
+        }
+        return false;
+}
+
+vector<string> Aaagmnrs::anagrams(vector<string> phrases) {
+    	vector<string> result;
+        
+        for (auto it : phrases) {
+        	if (it == phrases[0]) result.push_back(it);
+            else if (!isAnagram(it, result)) {
+            	result.push_back(it);
+            }
+        }
+        return result;
+}

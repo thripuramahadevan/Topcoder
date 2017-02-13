@@ -1,0 +1,17 @@
+#include <vector>
+#include <map>
+
+using namespace std;
+
+class AdvertisingAgency {
+public:
+    int numberOfRejections(vector<int> requests) {
+    	int result = 0;
+        map<int,int> freq;
+        for (auto req : requests) {
+        if (freq[req] > 0) result++;
+        else freq[req]++;
+        }
+        return result;
+    }
+};

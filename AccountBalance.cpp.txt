@@ -1,0 +1,35 @@
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class AccountBalance {
+public:
+    int processTransactions(int startingBalance, vector<string> transactions) {
+    	int result;
+        long endBal, debitOrCredit;
+        char cOrD;
+         std::string::size_type sz;   // alias of size_t
+
+        
+        endBal = startingBalance;
+        for (auto trans : transactions) {
+       		 cOrD = trans[0];
+        	string amount = trans.substr(2);
+        	debitOrCredit = stol(amount,&sz);
+            switch(cOrD) {
+            case 'C':
+                endBal += debitOrCredit;
+                break;
+            case 'D':
+                endBal -= debitOrCredit;
+                break;
+            default:
+                break;
+            }
+            
+        }
+        result = endBal;
+            return result;
+    }
+};
