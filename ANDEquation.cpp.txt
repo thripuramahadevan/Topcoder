@@ -1,0 +1,23 @@
+#include <vector>
+
+using namespace std;
+
+class ANDEquation {
+public:
+	int restoreY(vector <int> A) {
+	int result = -1;
+	int sum = 1048575;
+	int ASz = A.size();
+	for (int i = 0; i < ASz; ++i) {
+		sum = 1048575;
+		for (int j = 0;j<ASz;++j) {
+			if (j == i) continue;
+			sum &= A[j];
+		}
+		if (A[i] == sum) return A[i];
+	}
+	
+	
+	return result;
+	}
+};

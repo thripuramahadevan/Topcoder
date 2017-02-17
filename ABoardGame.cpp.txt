@@ -1,0 +1,38 @@
+#include <vector>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class ABoardGame {
+public:
+    string whoWins(vector<string> board) {
+   	    string result = "Draw";
+        int n = (board[0].size())/2;
+                
+		int numA = 0, numB = 0;
+        int i,j,k,s,t;
+		for (i = 0; i <= n; ++i)
+		{
+			numA = 0;numB = 0;
+			for (k = (n-i),s=0; s < 2*i; ++k,++s) {
+                
+                
+				for (j=(n-i),t=0;t < 2*i; ++j,++t) {
+          		
+					if (board[k][j] == 'A') ++numA;
+					else if (board[k][j] == 'B') ++numB;
+					board[k][j] = 'X';
+					
+				}
+			}
+			if (numA == numB) continue;
+			else if (numA > numB) return "Alice";
+			else return "Bob";
+		}
+		
+		if (numA == numB) return "Draw";
+		else if (numA > numB) return "Alice";
+		else return "Bob";
+    }
+};

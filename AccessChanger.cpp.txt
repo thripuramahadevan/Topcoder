@@ -1,0 +1,42 @@
+#include <vector>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class AccessChanger {
+public:
+    vector<string> convert(vector<string> program) {
+    vector<string> result;
+    
+        string res = "";
+        int j,k;
+        for (auto it : program) {
+            bool comment = false;
+            res.resize(it.size());
+            
+            for (j=0, k=0; j < it.size(); ++j) {
+                if (it[j] == '-' && it[j+1] == '>' && !comment) {
+                	res.resize(res.size()-1);
+					res[k++] = '.';
+                    ++j;
+                }
+                else if (it[j] == '/' && it[j+1] == '/') {
+                    comment = true;
+                    res[k++] = it[j++];
+                    res[k++] = it[j];
+                }
+                else {
+                	res[k++] = it[j];
+                }
+           
+            
+            }
+			res[k] = '\0';
+			
+            result.push_back(res);    
+            
+        }
+        return result;
+    }
+};
