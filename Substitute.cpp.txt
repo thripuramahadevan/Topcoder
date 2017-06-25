@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string.h>
+
+using namespace std;
+
+class Substitute {
+	public:
+    int getValue(string key, string code) {
+    	int res=0;
+        
+        int cLen = code.length();
+        
+        for (int i=0;i<cLen;++i)
+        {
+            int pos = key.find(code[i]);
+           // cout << code[i] << " was found in position " << pos << endl;
+            
+        	if (pos != string::npos)
+            {
+                if (pos == 9) pos = 0;
+            	else ++pos;
+                res = res*10 + pos;
+            }
+        }
+        return res;
+    }
+};

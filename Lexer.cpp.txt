@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+class Lexer {
+	public:
+    vector <string> tokenize(vector <string> tokens, string input)
+    {
+        vector<string> res;
+        
+        //Sort the tokens first
+        sort(tokens.begin(),tokens.end());
+        
+        string in = input;
+        
+        while (in != "\0")
+        {
+            //cout << "in = " << in << endl;
+        	bool found = false;
+            for (int i=tokens.size()-1;i>=0;--i)
+            {
+                //cout << "Considering " << tokens[i] << endl;
+                if (in.find(tokens[i],0) == 0)
+                {
+                    found = true;
+                    in.erase (0,tokens[i].length());
+                    res.push_back(tokens[i]);
+                    //cout << "res added" << endl;
+                    break;
+                }
+            }
+            if (found) continue;
+            in.erase(0,1);
+        }
+        return res;
+    }
+};
