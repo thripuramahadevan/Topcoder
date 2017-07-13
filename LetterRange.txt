@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class LetterRange{
+public:
+	vector <string> ranges(string param0) {
+	vector<string> res;
+	
+	bool inrange = false;
+	string result;
+    char ch;
+        
+	for (ch = 'a'; ch <= 'z'; ++ch)
+	{
+		if (param0.find(ch) != string::npos)
+		{
+			if (!inrange)
+			{
+				result.append(1,ch);
+                result += ":";
+                
+                cout << "ch = " << ch << " and result = " << result;
+				inrange = true;
+			}
+			else
+			{
+				continue;
+			}
+		}
+		else if (inrange)
+		{
+            --ch;
+			result.append(1,ch);
+            cout << "result = " << result;
+            ++ch;
+			res.push_back(result);
+            result = "\0";
+			inrange = false;
+		}
+	}
+    if (ch <= '{' && inrange)
+    {
+        --ch;
+       	result += ch;
+    	res.push_back(result);  
+        result = "\0";
+    }
+	
+	return res;
+	}
+};
